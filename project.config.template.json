@@ -25,6 +25,18 @@
       {
         "type": "file",
         "value": "tsconfig.json"
+      },
+      {
+        "type": "folder",
+        "value": "node_modules"
+      },
+      {
+        "type": "folder",
+        "value": "dist"
+      },
+      {
+        "type": "folder",
+        "value": "scripts"
       }
     ]
   },

@@ -1,0 +1,20 @@
+{
+  "name": "yeats-parent",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "test": "node --test tests/*.js",
+    "package:acceptance": "node scripts/package.cjs acceptance",
+    "package:production": "node scripts/package.cjs production"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "miniprogram-api-typings": "5.2.3",
+    "miniprogram-automator": "0.12.1"
+  },
+  "overrides": {
+    "jimp": "0.22.12"
+  }
+}

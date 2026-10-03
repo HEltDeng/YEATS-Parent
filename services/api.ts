@@ -8,13 +8,14 @@ export function statusMessage(status:number,detail?:any){
   return typeof detail==='string'?detail:'请求未完成，请检查内容后重试';
 }
 export function networkMessage(error:any){return error?.errMsg?.includes('timeout')?'请求超时，请稍后重试':'暂时无法连接服务，请确认服务已启动后重试';}
+function diagnostic(path:string,status:number){if(config.environment==='development')console.warn('[YEATS request]',path.split('?')[0],status);}
 export function token():string{return wx.getStorageSync('yeats.session')||'';}
 export function clearSession(){wx.removeStorageSync('yeats.session');wx.removeStorageSync('yeats.student');}
 export function request<T=any>(path:string,method:WechatMiniprogram.RequestOption['method']='GET',data?:any):Promise<T>{
   if(!config.apiBase) return Promise.reject(new ApiError(503,'服务地址尚未配置，请联系机构'));
   return new Promise((resolve,reject)=>wx.request({url:config.apiBase+path,method,data,timeout:15000,header:{Authorization:'Bearer '+token(),'Content-Type':'application/json'},
-    success:r=>{if(r.statusCode>=200&&r.statusCode<300)resolve(r.data as T);else{const d=r.data as any;if(r.statusCode===401)clearSession();reject(new ApiError(r.statusCode,statusMessage(r.statusCode,d.detail)));}},
-    fail:e=>reject(new ApiError(0,networkMessage(e)))}));
+    success:r=>{if(r.statusCode>=200&&r.statusCode<300)resolve(r.data as T);else{const d=r.data as any;diagnostic(path,r.statusCode);if(r.statusCode===401)clearSession();reject(new ApiError(r.statusCode,statusMessage(r.statusCode,d.detail)));}},
+    fail:e=>{diagnostic(path,0);reject(new ApiError(0,networkMessage(e)));}}));
 }
 export async function login(){const r=await wx.login();const out=await request('/v1/auth/wechat','POST',{code:r.code});wx.setStorageSync('yeats.session',out.token);return out;}
 export function activeStudent():string{return wx.getStorageSync('yeats.student')||'';}

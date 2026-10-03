@@ -1,0 +1,10 @@
+node_modules/
+*.js
+!tests/*.js
+project.config.json
+project.private.config.json
+config.local.ts
+.env*
+!.env.example
+dist/
+*.log
