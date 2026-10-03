@@ -1,0 +1,13 @@
+{
+  "name": "@yeats/file-type-buffer-compat",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Only the legacy Jimp fromBuffer API, backed by patched upstream file-type.",
+  "main": "index.cjs",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "file-type-modern": "npm:file-type@21.3.4"
+  }
+}

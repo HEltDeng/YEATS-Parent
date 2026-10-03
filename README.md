@@ -17,3 +17,5 @@
 
 设置 `YEATS_PARENT_API_BASE` 为已授权的 HTTPS 后端地址，运行 `npm.cmd run package:acceptance` 或 `package:production`，输出独立 `dist/acceptance` 或 `dist/production` 导入目录；不改本地开发配置、不上传。
 该构建移除开发登录控件和处理方法，打包后扫描开发接口残留。后端必须同步禁用开发登录/测试会话，不能只隐藏按钮。正式微信、手机号、外部服务及用户验收门槛仍需单独通过。
+
+开发工具需要Node>=20。`tools/file-type-buffer-compat`仅将Jimp的旧异步fromBuffer调用适配到已修复的file-type 21.3.4，官方automator/Jimp接口保持不变；不修改第三方源码。`npm test`验证合成二维码解码、PNG/JPEG及畸形ASF的有界处理。工具目录与依赖不进入小程序体验/生产包。

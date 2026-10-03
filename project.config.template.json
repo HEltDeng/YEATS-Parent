@@ -37,6 +37,10 @@
       {
         "type": "folder",
         "value": "scripts"
+      },
+      {
+        "type": "folder",
+        "value": "tools"
       }
     ]
   },

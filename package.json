@@ -12,9 +12,15 @@
   "devDependencies": {
     "typescript": "5.9.3",
     "miniprogram-api-typings": "5.2.3",
-    "miniprogram-automator": "0.12.1"
+    "miniprogram-automator": "0.12.1",
+    "file-type-modern": "npm:file-type@21.3.4",
+    "file-type": "file:tools/file-type-buffer-compat"
   },
   "overrides": {
-    "jimp": "0.22.12"
+    "jimp": "0.22.12",
+    "file-type": "$file-type"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
